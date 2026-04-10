@@ -8,28 +8,57 @@
 </head>
 <body>
   <main class="deck deck--meeting-followup">
+
+    <!-- SLIDE 1: Cover -->
     <section class="slide cover">
       <div class="brand-mark">
-        <span class="logo-inline"><img src="../brand/logo_white.png" alt="Paioneers Logo" style="height: 44px; width: auto;" /></span>
+        <img src="../brand/logo_white.png" alt="Paioneers" />
       </div>
       <p class="kicker">Meeting Follow-Up</p>
       <h1>{{DECK_TITLE}}</h1>
-      <p>{{DECK_SUBTITLE}}</p>
-      <div class="footer-meta">
-        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+      <p class="subtitle">{{DECK_SUBTITLE}}</p>
+      <span class="reading-time">~3 min read</span>
+      <div class="slide-footer">
         <span>{{COMPANY_NAME}}</span>
         <span>{{GENERATED_AT}}</span>
       </div>
     </section>
 
-    <section class="slide">
-      <p class="kicker">Executive Summary</p>
-      <h2>What We Aligned On</h2>
-      <div class="card">
-        <p>{{EXECUTIVE_SUMMARY}}</p>
+    <!-- SLIDE 2: Stat Anchor — At-a-Glance -->
+    <section class="slide stat-slide">
+      <p class="kicker">At a Glance</p>
+      <div class="grid-3" style="margin-top: var(--space-lg);">
+        <div class="metric-card">
+          <div class="value">{{ACTION_ITEM_COUNT}}</div>
+          <div class="label">Action Items</div>
+        </div>
+        <div class="metric-card">
+          <div class="value">{{RISK_COUNT}}</div>
+          <div class="label">Risks Flagged</div>
+        </div>
+        <div class="metric-card">
+          <div class="value">{{NEXT_STEP_COUNT}}</div>
+          <div class="label">Next Steps</div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
       </div>
     </section>
 
+    <!-- SLIDE 3: Executive Summary -->
+    <section class="slide">
+      <p class="kicker">Executive Summary</p>
+      <h2>What We Aligned On</h2>
+      <div class="card--primary" style="border-radius: var(--radius-md); padding: var(--space-lg); box-shadow: var(--shadow-card); border: 1px solid transparent; background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box, linear-gradient(90deg, var(--orange), var(--periwinkle), var(--teal)) border-box;">
+        <p>{{EXECUTIVE_SUMMARY}}</p>
+      </div>
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Key Discussion Points -->
     <section class="slide">
       <p class="kicker">Discussion Highlights</p>
       <h2>Key Discussion Points</h2>
@@ -38,13 +67,17 @@
           <h3>Main Topics</h3>
           <ul>{{KEY_DISCUSSION_POINTS}}</ul>
         </div>
-        <div class="card">
+        <div class="card--muted" style="border-radius: var(--radius-md); padding: var(--space-lg); background: rgba(250, 255, 239, 0.6); border: var(--border-light); box-shadow: var(--shadow-soft);">
           <h3>Risks &amp; Watchouts</h3>
           <ul>{{RISKS_AND_WATCHOUTS}}</ul>
         </div>
       </div>
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
+      </div>
     </section>
 
+    <!-- SLIDE 5: Action Items -->
     <section class="slide">
       <p class="kicker">Execution</p>
       <h2>Action Items</h2>
@@ -61,20 +94,24 @@
           <tbody>{{ACTION_ITEMS_ROWS}}</tbody>
         </table>
       </div>
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
+      </div>
     </section>
 
+    <!-- SLIDE 6: Next Steps -->
     <section class="slide">
       <p class="kicker">Momentum</p>
       <h2>Next Steps</h2>
       <div class="card">
         <ol>{{NEXT_STEPS}}</ol>
       </div>
-      <div class="footer-meta">
-        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
         <span>www.paioneers.nl</span>
-        <span>Prepared by Paioneers B.V.</span>
       </div>
     </section>
+
   </main>
 </body>
 </html>
