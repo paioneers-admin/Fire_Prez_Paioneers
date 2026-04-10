@@ -1,11 +1,19 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{DECK_TITLE}}</title>
-  <style>{{BRAND_CSS}}</style>
+  <style>
+    {
+        {
+        BRAND_CSS
+      }
+    }
+  </style>
 </head>
+
 <body>
   <main class="deck deck--meeting-followup">
 
@@ -17,7 +25,6 @@
       <p class="kicker">Meeting Follow-Up</p>
       <h1>{{DECK_TITLE}}</h1>
       <p class="subtitle">{{DECK_SUBTITLE}}</p>
-      <span class="reading-time">~3 min read</span>
       <div class="slide-footer">
         <span>{{COMPANY_NAME}}</span>
         <span>{{GENERATED_AT}}</span>
@@ -50,7 +57,8 @@
     <section class="slide">
       <p class="kicker">Executive Summary</p>
       <h2>What We Aligned On</h2>
-      <div class="card--primary" style="border-radius: var(--radius-md); padding: var(--space-lg); box-shadow: var(--shadow-card); border: 1px solid transparent; background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box, linear-gradient(90deg, var(--orange), var(--periwinkle), var(--teal)) border-box;">
+      <div class="card--primary"
+        style="border-radius: var(--radius-md); padding: var(--space-lg); box-shadow: var(--shadow-card); border: 1px solid transparent; background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box, linear-gradient(90deg, var(--orange), var(--periwinkle), var(--teal)) border-box;">
         <p>{{EXECUTIVE_SUMMARY}}</p>
       </div>
       <div class="slide-footer">
@@ -67,7 +75,8 @@
           <h3>Main Topics</h3>
           <ul>{{KEY_DISCUSSION_POINTS}}</ul>
         </div>
-        <div class="card--muted" style="border-radius: var(--radius-md); padding: var(--space-lg); background: rgba(250, 255, 239, 0.6); border: var(--border-light); box-shadow: var(--shadow-soft);">
+        <div class="card--muted"
+          style="border-radius: var(--radius-md); padding: var(--space-lg); background: rgba(250, 255, 239, 0.6); border: var(--border-light); box-shadow: var(--shadow-soft);">
           <h3>Risks &amp; Watchouts</h3>
           <ul>{{RISKS_AND_WATCHOUTS}}</ul>
         </div>
@@ -114,4 +123,5 @@
 
   </main>
 </body>
+
 </html>

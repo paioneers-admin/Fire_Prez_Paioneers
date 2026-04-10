@@ -158,5 +158,105 @@ Section numbers (1., 1.1, 1.1.1) are always included. They use the mono font and
 
 ---
 
+# Academic Research Paper Guidelines
+## APA Style: Structure, Design & Citation Standards
+
+> Based on the American Psychological Association (APA) Publication Manual and Cornell University Library APA Citation Style Guide (Pub. No. 8)
+
+---
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Paper Structure](#paper-structure)
+3. [Formatting & Design](#formatting--design)
+4. [In-Text Citations](#in-text-citations)
+5. [Reference List Rules](#reference-list-rules)
+6. [Reference Formats by Source Type](#reference-formats-by-source-type)
+   - [Books](#books)
+   - [Essays or Chapters in Edited Books](#essays-or-chapters-in-edited-books)
+   - [Encyclopedias & Dictionaries](#encyclopedias--dictionaries)
+   - [Journals, Magazines & Newspapers](#journals-magazines--newspapers)
+   - [Technical & Research Reports](#technical--research-reports)
+   - [Audio-Visual Media](#audio-visual-media)
+   - [Electronic Media & Online Sources](#electronic-media--online-sources)
+7. [Additional Resources](#additional-resources)
+
+---
+
+## Overview
+
+APA citation style refers to the rules and conventions established by the **American Psychological Association** for documenting sources used in a research paper. It requires two core elements:
+
+1. **Reference Citations in Text** — brief in-text parenthetical references
+2. **Reference List** — a complete bibliography at the end of the paper
+
+Together, these elements identify and credit sources consulted and allow readers to locate the cited material.
+
+---
+
+## Paper Structure
+
+A standard APA research paper follows this structure:
+
+| Section | Description |
+|---|---|
+| **Title Page** | Paper title, author name(s), institutional affiliation, running head |
+| **Abstract** | 150–250 word summary of the study |
+| **Introduction** | Background, research question, purpose of the study |
+| **Method** | Participants, materials, procedure |
+| **Results** | Findings, data, statistics |
+| **Discussion** | Interpretation, implications, limitations |
+| **References** | Alphabetical list of all cited sources |
+| **Appendices** *(optional)* | Supplementary materials, raw data, instruments |
+
+---
+
+## Formatting & Design
+
+### General Layout
+
+- **Font:** 12-point Times New Roman (or similar serif font)
+- **Margins:** 1 inch (2.54 cm) on all sides
+- **Spacing:** Double-spaced throughout, including the Reference List
+- **Alignment:** Left-aligned (do not justify)
+- **Paragraph Indentation:** 0.5 inch (first line of each paragraph)
+
+### Title Page
+
+- Running head in the header (abbreviated title, max 50 characters, ALL CAPS)
+- Page number top-right
+- Title centered in the upper half of the page
+- Author name and affiliation below the title
+
+### Headings
+
+APA uses five levels of headings for organizing content:
+
+| Level | Format |
+|---|---|
+| 1 | **Centered, Bold, Title Case** |
+| 2 | **Left-aligned, Bold, Title Case** |
+| 3 | *Left-aligned, Bold Italic, Title Case* |
+| 4 | Indented, Bold, Title Case, ends with period. |
+| 5 | Indented, Bold Italic, Title Case, ends with period. |
+
+### Reference List Indentation
+
+- First line of each entry: **flush with left margin**
+- All subsequent lines: indented **5–7 spaces** (hanging indent)
+- Use **italics** (not underlining) for titles of books and journals
+
+---
+
+## In-Text Citations
+
+Citations are placed **within sentences and paragraphs** to make clear what information is quoted or paraphrased and whose work is cited. The basic format includes the **author's last name** and **year of publication** in parentheses.
+
+### Single Author
+
+
+---
+
 > Last updated: March 2026
 > Owner: Paioneers B.V. Research Division

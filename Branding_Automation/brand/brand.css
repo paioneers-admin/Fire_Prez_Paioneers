@@ -358,24 +358,28 @@ ul {
 }
 
 ul li {
+  position: relative;
   line-height: 1.5;
   font-weight: 300;
   font-size: 15px;
-  display: flex;
-  align-items: baseline;
+  padding-left: calc(6px + var(--space-md));
 }
 
 ul li::before {
   content: "";
-  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 8px;
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background-color: var(--orange);
-  margin-right: var(--space-md);
-  flex-shrink: 0;
-  position: relative;
-  top: -1px;
+}
+
+ul li strong {
+  font-weight: 500;
+  color: var(--dark-teal);
+  margin-right: 4px;
 }
 
 /* Ordered lists — numbered, not dots */
@@ -389,16 +393,19 @@ ol {
 }
 
 ol li {
+  position: relative;
   line-height: 1.5;
   font-weight: 300;
   font-size: 15px;
-  display: flex;
-  align-items: baseline;
+  padding-left: calc(22px + var(--space-md));
   counter-increment: step-counter;
 }
 
 ol li::before {
   content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -410,8 +417,12 @@ ol li::before {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
-  margin-right: var(--space-md);
-  flex-shrink: 0;
+}
+
+ol li strong {
+  font-weight: 500;
+  color: var(--dark-teal);
+  margin-right: 4px;
 }
 
 /* ============================================================
