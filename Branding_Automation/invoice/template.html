@@ -10,13 +10,13 @@
   <main class="deck deck--invoice">
     <section class="slide cover">
       <div class="brand-mark">
-        <span class="logo-inline"><img src="../brand/logo_white.png" alt="Paioneers Logo" style="height: 44px; width: auto;" /></span>
+        <img src="../brand/logo_white.png" alt="Paioneers" />
       </div>
       <p class="kicker">Invoice Template</p>
       <h1>{{DECK_TITLE}}</h1>
-      <p>{{DECK_SUBTITLE}}</p>
-      <div class="footer-meta">
-        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+      <p class="subtitle">{{DECK_SUBTITLE}}</p>
+      <span class="reading-time">~5 min read</span>
+      <div class="slide-footer">
         <span>{{COMPANY_NAME}}</span>
         <span>{{GENERATED_AT}}</span>
       </div>
@@ -40,6 +40,9 @@
           <p style="margin-top: var(--space-sm);"><strong>Ship To:</strong> {{SHIP_TO}}</p>
           <p class="muted" style="margin-top: var(--space-sm);"><strong>Bill From:</strong> {{BILL_FROM}}</p>
         </div>
+      </div>
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
       </div>
     </section>
 
@@ -77,6 +80,9 @@
           </ul>
         </div>
       </div>
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
+      </div>
     </section>
 
     <section class="slide">
@@ -85,10 +91,9 @@
       <div class="card">
         <p>{{REMARKS}}</p>
       </div>
-      <div class="footer-meta">
-        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
         <span>www.paioneers.nl</span>
-        <span>Prepared by Paioneers B.V.</span>
       </div>
     </section>
   </main>

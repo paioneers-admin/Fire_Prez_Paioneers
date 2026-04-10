@@ -445,10 +445,11 @@ tbody td {
     <!-- SLIDE 1: COVER -->
     <section class="slide cover">
       <div class="brand-mark">
-        <span class="logo-inline"><img src="../brand/logo_white.png" alt="Paioneers Logo" style="height: 44px; width: auto;" /></span>
+        <img src="../brand/logo_white.png" alt="Paioneers" />
       </div>
       <p class="kicker">Call Analysis</p>
       <h1>{{meeting_meta.title}}</h1>
+      <span class="reading-time">~5 min read</span>
       <div class="meta-strip">
         <div class="meta-item">
           <span class="meta-label">Date</span>
@@ -469,8 +470,7 @@ tbody td {
           </span>
         </div>
       </div>
-      <div class="footer-meta">
-        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+      <div class="slide-footer">
         <span>{{prospect.company_name}}</span>
         <span>Prepared by Paioneers B.V.</span>
       </div>
@@ -482,6 +482,9 @@ tbody td {
       <h2>What Happened on This Call</h2>
       <div class="card card--highlight">
         <p>{{executive_summary}}</p>
+      </div>
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
       </div>
     </section>
 
@@ -523,6 +526,9 @@ tbody td {
           <div class="signal-value">{{#if timeline_signals}}{{timeline_signals}}{{else}}<span class="signal-null">Not mentioned</span>{{/if}}</div>
         </div>
       </div>
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
+      </div>
     </section>
 
     <!-- SLIDE 4: PAIN POINTS + OBJECTIONS -->
@@ -551,6 +557,9 @@ tbody td {
           {{/if}}
         </div>
       </div>
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
+      </div>
     </section>
 
     <!-- SLIDE 5: KEY QUOTES -->
@@ -562,6 +571,9 @@ tbody td {
         {{#each key_quotes}}
         <blockquote class="quote-block">"{{this}}"</blockquote>
         {{/each}}
+      </div>
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
       </div>
     </section>
     {{/if}}
@@ -596,6 +608,9 @@ tbody td {
         <p class="muted">No explicit action items recorded.</p>
       </div>
       {{/if}}
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
+      </div>
     </section>
 
     <!-- SLIDE 7: STRATEGIC ASSESSMENT + RECOMMENDED APPROACH -->
@@ -615,10 +630,9 @@ tbody td {
           {{/if}}
         </div>
       </div>
-      <div class="footer-meta">
-        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+      <div class="slide-footer">
+        <img src="../brand/logoblack.png" alt="Paioneers" />
         <span>www.paioneers.nl</span>
-        <span>Prepared by Paioneers B.V. · Confidential</span>
       </div>
     </section>
 
