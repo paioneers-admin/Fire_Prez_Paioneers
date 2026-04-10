@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Call Analysis",
+  "description": "Structured output for an AI-analysed sales or discovery call from Fireflies.ai",
+  "type": "object",
+  "required": [
+    "meeting_meta",
+    "prospect",
+    "pain_points",
+    "objections",
+    "action_items",
+    "overall_sentiment",
+    "executive_summary",
+    "strategic_assessment",
+    "recommended_approach"
+  ],
+  "properties": {
+    "meeting_meta": {
+      "type": "object",
+      "required": ["title", "date", "duration_minutes", "organizer", "attendees"],
+      "properties": {
+        "title":             { "type": "string" },
+        "date":              { "type": "string", "description": "ISO 8601 date string" },
+        "duration_minutes":  { "type": "number" },
+        "organizer":         { "type": "string" },
+        "attendees":         { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "prospect": {
+      "type": "object",
+      "properties": {
+        "company_name":  { "type": ["string", "null"] },
+        "contact_name":  { "type": ["string", "null"] },
+        "role":          { "type": ["string", "null"] },
+        "industry":      { "type": ["string", "null"] },
+        "company_size":  { "type": ["string", "null"] }
+      }
+    },
+    "pain_points": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Specific problems or frustrations expressed by the prospect"
+    },
+    "current_solution": {
+      "type": ["string", "null"],
+      "description": "How the prospect currently handles the problem we solve"
+    },
+    "budget_signals": {
+      "type": ["string", "null"],
+      "description": "Any mentions of budget, spend, or financial context"
+    },
+    "timeline_signals": {
+      "type": ["string", "null"],
+      "description": "Any urgency, deadlines, or implementation timelines mentioned"
+    },
+    "objections": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Explicit or implied pushbacks, concerns, or hesitations"
+    },
+    "key_quotes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "High-signal verbatim quotes from the prospect worth capturing"
+    },
+    "action_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["owner", "action"],
+        "properties": {
+          "owner":    { "type": "string" },
+          "action":   { "type": "string" },
+          "due_date": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "next_steps": {
+      "type": ["string", "null"],
+      "description": "The agreed or implied next step at end of call"
+    },
+    "overall_sentiment": {
+      "type": "string",
+      "enum": ["positive", "neutral", "negative", "mixed"]
+    },
+    "executive_summary": {
+      "type": "string",
+      "description": "2-3 sentence narrative: what happened on this call at high signal"
+    },
+    "strategic_assessment": {
+      "type": "string",
+      "description": "What does this tell us about the prospect's readiness, fit, and risk?"
+    },
+    "recommended_approach": {
+      "type": "string",
+      "description": "What should the rep do next and why?"
+    }
+  }
+}

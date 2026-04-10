@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Claude Code / Orange Slice Integration",
+  "description": "Structured data for the Claude Code + Orange Slice integration component",
+  "type": "object",
+  "required": [
+    "page_title",
+    "headline",
+    "npx_command",
+    "connection_message",
+    "tools_loaded",
+    "instructions",
+    "step_1",
+    "step_2",
+    "step_3"
+  ],
+  "properties": {
+    "page_title": { "type": "string", "description": "Browser tab title" },
+    "headline": { "type": "string", "description": "Main page headline" },
+    "tab_chat": { "type": "string", "default": "Start a chat" },
+    "tab_agent": { "type": "string", "default": "Build an agent" },
+    "tab_claude_code": { "type": "string", "default": "Claude Code" },
+    "terminal_title": { "type": "string", "default": "claude" },
+    "npx_command": { "type": "string", "description": "The npx command to run (e.g. orangeslice@latest)" },
+    "connection_message": { "type": "string", "description": "Success message after connection" },
+    "tools_loaded": { "type": "string", "description": "Comma-separated list of tools loaded" },
+    "instructions": { "type": "string", "description": "Paragraph explaining the integration (may include **Claude Code** for bold)" },
+    "step_1": { "type": "string" },
+    "step_2": { "type": "string" },
+    "step_3": { "type": "string" },
+    "learn_more_url": { "type": "string", "default": "https://orangeslice.ai" },
+    "learn_more_label": { "type": "string", "default": "Learn more" }
+  }
+}

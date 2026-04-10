@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Let's find your next customer — Claude Code</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@200;300;400;500;600&display=swap');
+
+:root {
+  /* Paioneers Colors */
+  --brand-cream: #FAFFEF;
+  --brand-dark-teal: #032C2D;
+  --brand-teal: #0F7A99;
+  --brand-orange: #F37C38;
+  --brand-periwinkle: #A9B8FF;
+  --brand-light-blue: #5B8DEF;
+  --brand-muted-gray: #8fa097;
+
+  /* Typographic Foundations */
+  --font-sans: "IBM Plex Sans", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", Menlo, monospace;
+
+  /* Spacing */
+  --space-xs: 6px;
+  --space-sm: 10px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 36px;
+  --space-2xl: 56px;
+
+  /* Shapes / Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  /* Glassmorphism & Shadow */
+  --glass-bg-light: rgba(250, 255, 239, 0.92);
+  --glass-bg-dark: rgba(3, 44, 45, 0.95);
+  --glass-blur: blur(24px);
+  --glass-border-light: 1px solid rgba(3, 44, 45, 0.12);
+  --glass-border-dark: 1px solid rgba(250, 255, 239, 0.08);
+  
+  --shadow-card: 0 16px 34px rgba(3, 44, 45, 0.18);
+  --shadow-soft: 0 8px 20px rgba(3, 44, 45, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: var(--space-xl);
+  font-family: var(--font-sans);
+  color: var(--brand-dark-teal);
+  background: var(--brand-cream);
+}
+
+/* Presentation Container */
+.deck {
+  max-width: 1560px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--space-lg);
+}
+
+/* Standard Slide Card with Glassmorphism */
+.slide {
+  border-radius: var(--radius-lg);
+  background: var(--glass-bg-light);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-card);
+  min-height: 640px;
+  padding: var(--space-2xl);
+  position: relative;
+  overflow: hidden;
+  border: var(--glass-border-light);
+  border-bottom: 1px solid rgba(3, 44, 45, 0.06);
+}
+
+/* Cover / Title Slide with Sunrise Gradient */
+.cover {
+  display: grid;
+  align-content: center;
+  gap: var(--space-lg);
+  background: linear-gradient(135deg, #d3866c 0%, #cf8b7d 14%, #c89495 28%, #c29baa 42%, #bba2c0 56%, #b5aad7 70%, #aeb2ec 100%);
+  color: var(--brand-cream);
+}
+
+.cover h1 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 200; /* Extremely thin */
+  font-size: clamp(40px, 5vw, 78px);
+  letter-spacing: -0.03em;
+}
+
+.cover p {
+  margin: 0;
+  max-width: 920px;
+  color: var(--brand-cream);
+  font-weight: 300;
+  font-size: clamp(16px, 2.2vw, 26px);
+}
+
+/* Kicker, Metadata, Callouts (IBM Plex Mono) */
+.brand-mark, .kicker, .footer-meta, thead th {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em; /* Wide tracking */
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.logo-inline {
+  width: 120px;
+  max-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo-inline svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.kicker {
+  margin: 0;
+  font-size: 12px;
+  color: var(--brand-teal);
+  font-weight: 500;
+}
+
+/* Typography Headings */
+h2 {
+  margin: var(--space-sm) 0 var(--space-md);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(26px, 3.4vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  margin: 0 0 var(--space-sm);
+  font-weight: 400;
+  font-size: clamp(20px, 2vw, 28px);
+}
+
+p {
+  margin: 0;
+  line-height: 1.45;
+  font-weight: 300;
+  font-size: clamp(15px, 1.6vw, 22px);
+  color: var(--brand-dark-teal);
+}
+
+.muted {
+  color: var(--brand-muted-gray);
+}
+
+/* Grids & Cards */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.card {
+  border-radius: var(--radius-md);
+  border: var(--glass-border-light);
+  padding: var(--space-lg);
+  background: rgba(250, 255, 239, 0.4);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: var(--glass-blur);
+}
+
+/* Accents for bullet points instead of standard bullets */
+ul,
+ol {
+  margin: 0;
+  padding-left: 0;
+  display: grid;
+  gap: var(--space-sm);
+  list-style-type: none;
+}
+
+li {
+  line-height: 1.4;
+  font-weight: 300;
+  font-size: clamp(14px, 1.45vw, 20px);
+  display: flex;
+  align-items: center;
+}
+
+li::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--brand-orange);
+  margin-right: var(--space-md);
+  flex-shrink: 0;
+}
+
+/* Tables */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: var(--glass-border-light);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(13px, 1.35vw, 18px);
+}
+
+thead th {
+  text-align: left;
+  background: var(--glass-bg-dark);
+  color: var(--brand-cream);
+  font-weight: 500;
+  padding: 12px 14px;
+  font-size: 11px;
+}
+
+tbody td {
+  padding: 12px 14px;
+  border-top: var(--glass-border-light);
+  vertical-align: top;
+  font-weight: 300;
+}
+
+/* Tiers / Pricing Cards */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.tier {
+  border-radius: var(--radius-md);
+  background: var(--glass-bg-light);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border-light);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.tier--featured {
+  /* Glowing gradient border approach for featured items */
+  border: 1px solid transparent;
+  background: linear-gradient(var(--glass-bg-light), var(--glass-bg-light)) padding-box,
+              linear-gradient(90deg, var(--brand-orange), var(--brand-periwinkle), var(--brand-teal)) border-box;
+}
+
+.price {
+  margin-top: var(--space-sm);
+  color: var(--brand-dark-teal);
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 200;
+}
+
+.footer-meta {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: var(--space-2xl);
+  right: var(--space-2xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--brand-muted-gray);
+  font-size: 11px;
+}
+
+/* CTA Buttons */
+.btn-cta {
+  display: inline-flex;
+  padding: var(--space-sm) var(--space-xl);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  color: var(--brand-dark-teal);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: linear-gradient(var(--glass-bg-light), var(--glass-bg-light)) padding-box,
+              linear-gradient(90deg, #F37C38, #A9B8FF, #0F7A99) border-box;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-cta:hover {
+  background: linear-gradient(90deg, #F37C38, #A9B8FF, #0F7A99);
+  color: var(--brand-cream);
+  letter-spacing: 0.2em;
+}
+
+@media (max-width: 1100px) {
+  body {
+    padding: var(--space-md);
+  }
+
+  .slide {
+    min-height: 0;
+    padding: var(--space-xl);
+  }
+
+  .grid-2,
+  .tier-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-meta {
+    position: static;
+    margin-top: var(--space-lg);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+}
+
+</style>
+  <style>
+
+    .claude-code {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+    }
+
+    .claude-code__title {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 200;
+      font-family: var(--font-sans);
+      color: var(--brand-dark-teal);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .claude-code__tabs {
+      display: flex;
+      gap: 0;
+      border: var(--glass-border-light);
+      border-radius: var(--radius-md);
+      padding: 4px;
+      background: var(--glass-bg-light);
+      backdrop-filter: var(--glass-blur);
+    }
+
+    .claude-code__tab {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      font-size: 11px;
+      font-weight: 500;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--brand-muted-gray);
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .claude-code__tab:hover {
+      color: var(--brand-dark-teal);
+    }
+
+    .claude-code__tab--active {
+      background: var(--brand-cream);
+      color: var(--brand-dark-teal);
+      box-shadow: var(--shadow-soft);
+      border: var(--glass-border-light);
+    }
+
+    .claude-code__terminal {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: var(--glass-border-dark);
+      box-shadow: var(--shadow-card);
+    }
+
+    .claude-code__terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: rgba(3, 44, 45, 0.4);
+      border-bottom: var(--glass-border-dark);
+    }
+
+    .claude-code__terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .claude-code__terminal-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .claude-code__terminal-dots span:nth-child(1) { background: #ff5f57; }
+    .claude-code__terminal-dots span:nth-child(2) { background: #febc2e; }
+    .claude-code__terminal-dots span:nth-child(3) { background: #28c840; }
+
+    .claude-code__terminal-title {
+      flex: 1;
+      text-align: center;
+      font-size: 11px;
+      color: var(--brand-muted-gray);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .claude-code__terminal-body {
+      padding: var(--space-lg);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--brand-cream);
+    }
+
+    .claude-code__terminal-body .cmd { color: var(--brand-orange); font-weight: 500; }
+    .claude-code__terminal-body .success { color: var(--brand-teal); }
+    .claude-code__terminal-body .muted { color: var(--brand-muted-gray); }
+
+    .claude-code__instructions {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.55;
+      font-family: var(--font-sans);
+      font-weight: 300;
+      color: var(--brand-dark-teal);
+    }
+
+    .claude-code__instructions strong {
+      font-weight: 500;
+      color: var(--brand-teal);
+    }
+
+    .claude-code__command-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding: var(--space-md) var(--space-lg);
+      background: var(--glass-bg-dark);
+      border: var(--glass-border-dark);
+      color: var(--brand-cream);
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    .claude-code__command-text {
+      flex: 1;
+      overflow-x: auto;
+    }
+
+    .claude-code__copy-btn {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: rgba(250, 255, 239, 0.1);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      color: var(--brand-teal);
+      transition: background 0.15s;
+    }
+
+    .claude-code__copy-btn:hover {
+      background: rgba(250, 255, 239, 0.2);
+    }
+
+    .claude-code__copy-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .claude-code__steps {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .claude-code__step {
+      font-size: clamp(14px, 1.45vw, 18px);
+      font-weight: 300;
+      color: var(--brand-dark-teal);
+      line-height: 1.5;
+    }
+
+    .claude-code__step::before {
+      content: attr(data-step) " ";
+      font-weight: 500;
+      font-family: var(--font-mono);
+      color: var(--brand-orange);
+    }
+
+    .claude-code__learn-more {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--brand-teal);
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: opacity 0.15s;
+    }
+
+    .claude-code__learn-more:hover {
+      opacity: 0.85;
+    }
+
+</style>
+</head>
+<body>
+  <main class="claude-code">
+    <h1 class="claude-code__title">Let's find your next customer.</h1>
+
+    <div class="claude-code__tabs">
+      <button type="button" class="claude-code__tab" aria-pressed="false">Start a chat</button>
+      <button type="button" class="claude-code__tab" aria-pressed="false">Build an agent</button>
+      <button type="button" class="claude-code__tab claude-code__tab--active" aria-pressed="true">Claude Code</button>
+    </div>
+
+    <div class="claude-code__terminal">
+      <div class="claude-code__terminal-header">
+        <div class="claude-code__terminal-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="claude-code__terminal-title">claude</span>
+      </div>
+      <div class="claude-code__terminal-body">
+        <div><span class="cmd">$ npx orangeslice@latest</span></div>
+        <div><span class="success">✓ Connected to Orange Slice</span></div>
+        <div><span class="muted">— Tools loaded: prospecting, enrichment, web_scraper, social_listening, outreach</span></div>
+      </div>
+    </div>
+
+    <p class="claude-code__instructions">Run this command inside <strong>Claude Code</strong> to give Claude access to all of Orange Slice's tools — prospecting, enrichment, scraping, and outreach — directly from your terminal.</p>
+
+    <div class="claude-code__command-box">
+      <span class="claude-code__command-text">$ npx orangeslice@latest</span>
+      <button type="button" class="claude-code__copy-btn" aria-label="Copy command" data-copy-cmd="npx orangeslice@latest">
+        <img src="../brand/logo_white.png" alt="Paioneers Logo" style="height: 44px; width: auto;" />
+      </button>
+    </div>
+
+    <ol class="claude-code__steps">
+      <li class="claude-code__step" data-step="1">Open Claude Code in your terminal</li>
+      <li class="claude-code__step" data-step="2">Run the command above — it connects your session to Orange Slice</li>
+      <li class="claude-code__step" data-step="3">Ask Claude to find leads, enrich data, or draft outreach</li>
+    </ol>
+
+    <a href="https://orangeslice.ai" class="claude-code__learn-more" target="_blank" rel="noopener">Learn more →</a>
+  </main>
+
+  <script>
+    (function() {
+      document.querySelectorAll('.claude-code__copy-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var cmd = this.getAttribute('data-copy-cmd');
+          var text = '$ ' + cmd;
+          navigator.clipboard.writeText(text).then(function() {
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<img src="../brand/logo_white.png" alt="Paioneers Logo" style="height: 44px; width: auto;" />';
+            setTimeout(function() { btn.innerHTML = orig; }, 1500);
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

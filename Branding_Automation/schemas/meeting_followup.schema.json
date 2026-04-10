@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Meeting Follow-Up Content",
+  "type": "object",
+  "required": [
+    "deck_subtitle",
+    "executive_summary",
+    "key_discussion_points",
+    "action_items",
+    "risks_and_watchouts",
+    "next_steps"
+  ],
+  "properties": {
+    "deck_subtitle": { "type": "string" },
+    "executive_summary": { "type": "string" },
+    "key_discussion_points": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "action_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["owner", "action", "due_date", "status"],
+        "properties": {
+          "owner": { "type": "string" },
+          "action": { "type": "string" },
+          "due_date": { "type": "string" },
+          "status": { "type": "string" }
+        }
+      }
+    },
+    "risks_and_watchouts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_steps": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

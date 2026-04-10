@@ -1,0 +1,36 @@
+{
+  "brand": {
+    "name": "Paioneers B.V.",
+    "website": "https://www.paioneers.nl"
+  },
+  "colors": {
+    "cream": "#FAFFEF",
+    "dark_teal": "#032C2D",
+    "teal": "#0F7A99",
+    "orange": "#F37C38",
+    "periwinkle": "#A9B8FF",
+    "light_blue": "#5B8DEF",
+    "gray_muted": "#8FA097"
+  },
+  "typography": {
+    "font_family_primary": "\"IBM Plex Sans\", Arial, sans-serif",
+    "font_family_mono": "\"IBM Plex Mono\", Menlo, monospace"
+  },
+  "spacing": {
+    "xs": "6px",
+    "sm": "10px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "36px",
+    "xxl": "56px"
+  },
+  "shape": {
+    "radius_sm": "8px",
+    "radius_md": "14px",
+    "radius_lg": "22px"
+  },
+  "elevation": {
+    "card": "0 16px 34px rgba(0, 0, 0, 0.18)",
+    "soft": "0 8px 20px rgba(0, 0, 0, 0.12)"
+  }
+}

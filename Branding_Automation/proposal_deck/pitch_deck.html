@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paioneers - Your AI-Powered Revenue Engine</title>
+
+    <style>
+        /* 
+      PAIONEERS PREMIUM BRAND SYSTEM
+      Theme: Dark tech with rust-orange accents, frosted glassmorphism, depth & 3D elements.
+    */
+        :root {
+            --brand-primary: #F37C38;
+            --brand-ink: #032C2D;
+            --brand-light: #F6F2EF;
+            --bg-dark: #0f0f0f;
+            --bg-gradient: linear-gradient(135deg, #131313 0%, #1c1a19 100%);
+
+            --glass-bg: rgba(3, 44, 45, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shadow: 0 32px 64px rgba(0, 0, 0, 0.3);
+            --glass-blur: blur(28px);
+
+            --font-body: 'IBM Plex Sans', Arial, sans-serif;
+            --font-display: 'IBM Plex Sans', Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
+        body {
+            background: var(--bg-dark);
+            background-image: var(--bg-gradient);
+            color: var(--brand-light);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* TYPOGRAPHY */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-display);
+            font-weight: 300;
+            line-height: 1.1;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 2vw, 1.75rem);
+            color: var(--brand-primary);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: clamp(1rem, 1.25vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .accent {
+            color: var(--brand-primary);
+        }
+
+        .kicker {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 700;
+            color: var(--brand-primary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* LAYOUT & SCROLL SNAPPING */
+        .slide {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* GLASSMORPHISM CARDS */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+            z-index: 1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            background: rgba(45, 45, 42, 0.6);
+            border-color: rgba(243, 124, 56, 0.3);
+        }
+
+        /* BACKGROUND ASSETS */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
+            filter: saturate(1.2) contrast(1.1);
+        }
+
+        .bg-gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 50%, transparent 0%, var(--bg-dark) 70%);
+            z-index: 1;
+        }
+
+        .bg-gradient-overlay-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--bg-dark) 30%, transparent 100%);
+            z-index: 1;
+        }
+
+        /* LOGO & NAVIGATION */
+        .brand-mark {
+            position: fixed;
+            top: 3rem;
+            left: 4rem;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand-mark svg {
+            height: 32px;
+            fill: var(--brand-light);
+        }
+
+        .brand-mark .accent-path {
+            fill: var(--brand-primary);
+        }
+
+        .slide-indicator {
+            position: fixed;
+            right: 3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--brand-primary);
+            transform: scale(1.5);
+            box-shadow: 0 0 12px rgba(243, 124, 56, 0.4);
+        }
+
+        /* ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        /* SPECIFIC SLIDE STYLES */
+        .phase-number {
+            font-size: 5rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            top: -1rem;
+            right: 2rem;
+            line-height: 1;
+            font-family: var(--font-display);
+        }
+
+        .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(243, 124, 56, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--brand-primary);
+            border: 1px solid rgba(243, 124, 56, 0.3);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            background: rgba(243, 124, 56, 0.15);
+            color: var(--brand-primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid rgba(243, 124, 56, 0.3);
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .slide {
+                height: auto;
+                min-height: 100vh;
+                padding: 8rem 0;
+                scroll-snap-align: none;
+            }
+
+            html {
+                scroll-snap-type: none;
+            }
+        }
+    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Brand Logo -->
+    <div class="brand-mark">
+        <!-- Paioneers Logo SVG -->
+        <img src="../brand/logo_white.png" alt="Paioneers Logo" style="height: 32px; width: auto;" />
+    </div>
+
+    <!-- Scroll Navigation Dots -->
+    <div class="slide-indicator" id="indicator"></div>
+
+    <!-- SLIDE 1: HERO -->
+    <section class="slide" id="s1">
+        <img src="abstract_glass.png" class="bg-image" alt="Abstract Background">
+        <div class="bg-gradient-overlay-left"></div>
+        <div class="container reveal">
+            <div class="grid-2">
+                <div>
+                    <span class="badge">PROPOSAL DECK</span>
+                    <h1>Your<br><span class="accent">AI-Powered</span><br>Revenue Engine</h1>
+                    <p style="font-size: 1.5rem; max-width: 600px;">By connecting every stage of the revenue lifecycle
+                        into a single intelligent system, Paioneers transforms how modern B2B revenue teams operate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: THE CHALLENGE -->
+    <section class="slide" id="s2">
+        <img src="id16rVFnQ__images.jpeg" class="bg-image"
+            style="object-position: right center; filter: grayscale(1) opacity(0.3);" alt="Inspiration">
+        <div class="bg-gradient-overlay"></div>
+        <div class="container">
+            <div class="grid-2">
+                <div class="reveal">
+                    <span class="kicker">The Friction</span>
+                    <h2>The Disconnected Revenue Lifecycle</h2>
+                    <p>Most B2B organizations operate with a fragmented revenue process. Critical insights are lost
+                        between acquisition, qualification, closing, and expansion.</p>
+                    <ul style="list-style: none; display:grid; gap: 1rem; margin-top: 2rem;">
+                        <li style="display:flex; gap: 1rem;">
+                            <div style="color:var(--brand-primary);">↳</div>
+                            <p>Signals are missed before the pipeline even opens.</p>
+                        </li>
+                        <li style="display:flex; gap: 1rem;">
+                            <div style="color:var(--brand-primary);">↳</div>
+                            <p>Discovery call insights die in transcript folders.</p>
+                        </li>
+                        <li style="display:flex; gap: 1rem;">
+                            <div style="color:var(--brand-primary);">↳</div>
+                            <p>Deals stall due to lack of next-best-action intelligence.</p>
+                        </li>
+                        <li style="display:flex; gap: 1rem;">
+                            <div style="color:var(--brand-primary);">↳</div>
+                            <p>Expansions are reactive rather than predictive.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="glass-card reveal delay-1">
+                    <h3 style="color:white; margin-bottom: 2rem;">The Solution</h3>
+                    <p>Paioneers eliminates this friction by leveraging specialized AI agents at every touchpoint. From
+                        ICP definition to customer expansion — one unified system.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: PHASES 1-2 OUTREACH -->
+    <section class="slide" id="s3">
+        <img src="connected_nodes.png" class="bg-image" alt="Network Context">
+        <div class="bg-gradient-overlay"></div>
+        <div class="container">
+            <div class="reveal">
+                <span class="kicker">Top of Funnel</span>
+                <h2>Acquisition & qualification at scale</h2>
+            </div>
+            <div class="grid-2" style="margin-top: 4rem;">
+                <div class="glass-card reveal delay-1">
+                    <div class="phase-number">01</div>
+                    <h3>Signal-Based Prospecting</h3>
+                    <p>A static territory list is inefficient. The system continuously listens for buying signals across
+                        target accounts—funding rounds, leadership changes, or hiring spikes.</p>
+                    <p
+                        style="font-size:0.9rem; border-top: 1px solid var(--glass-border); padding-top: 1rem; margin-top: 1rem;">
+                        <strong style="color:var(--brand-primary)">Result:</strong> Automated pipeline generated
+                        precisely when accounts enter a buying window.
+                    </p>
+                </div>
+                <div class="glass-card reveal delay-2">
+                    <div class="phase-number">02</div>
+                    <h3>Pre-Call Intelligence</h3>
+                    <p>No more blind discovery calls. AI compiles a 'Pre-Call Briefing' for every scheduled
+                        meeting—synthesizing company news, persona pain points, and recommended discovery architectures.
+                    </p>
+                    <p
+                        style="font-size:0.9rem; border-top: 1px solid var(--glass-border); padding-top: 1rem; margin-top: 1rem;">
+                        <strong style="color:var(--brand-primary)">Result:</strong> Every rep walks in prepared and
+                        equipped to uncover what matters most.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: PHASES 3-4 CONVERSION -->
+    <section class="slide" id="s4">
+        <img src="revenue_engine.png" class="bg-image" style="opacity: 0.15;" alt="Engine">
+        <div class="bg-gradient-overlay"></div>
+        <div class="container">
+            <div class="reveal">
+                <span class="kicker">Mid-Funnel Intelligence</span>
+                <h2>Accelerating the conversion cycle</h2>
+            </div>
+            <div class="grid-2" style="margin-top: 4rem;">
+                <div class="glass-card reveal delay-1">
+                    <div class="phase-number">03</div>
+                    <h3>Post-Call Intelligence</h3>
+                    <p>Every meeting is transcribed, analyzed, and structured. AI automatically pushes qualification
+                        data to your CRM and drafts personalized follow-up emails instantly.</p>
+                    <div style="display:flex; gap: 0.5rem; margin-top: 1.5rem; flex-wrap:wrap;">
+                        <span class="badge">CRM Updates</span>
+                        <span class="badge">Coaching</span>
+                        <span class="badge">Follow-ups</span>
+                    </div>
+                </div>
+                <div class="glass-card reveal delay-2">
+                    <div class="phase-number">04</div>
+                    <h3>Demo Intelligence</h3>
+                    <p>Generating presentation drafts directly from discovery call transcripts—ensuring every deck
+                        reflects the prospect's actual business challenges and desired outcomes.</p>
+                    <div style="display:flex; gap: 0.5rem; margin-top: 1.5rem; flex-wrap:wrap;">
+                        <span class="badge">Current State</span>
+                        <span class="badge">Future State</span>
+                        <span class="badge">ROI Narrative</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: PHASES 5-6 PROGRESSION -->
+    <section class="slide" id="s5">
+        <div class="bg-gradient-overlay"
+            style="background: radial-gradient(circle at top right, transparent 0%, var(--bg-dark) 80%);"></div>
+        <div class="container">
+            <div class="reveal">
+                <span class="kicker">Deal Operations</span>
+                <h2>Winning the late-stage pipeline</h2>
+            </div>
+            <div class="grid-2" style="margin-top: 4rem;">
+                <div class="glass-card reveal delay-1">
+                    <div class="phase-number">05</div>
+                    <h3>AI Proposal Generation</h3>
+                    <p>We leverage AI to generate personalized proposal drafts directly from transcripts and enriched
+                        CRM data. No more generic pitches—only highly contextualized, closed-won architectures.</p>
+                </div>
+                <div class="glass-card reveal delay-2">
+                    <div class="phase-number">06</div>
+                    <h3>Stalled Deal Reactivation</h3>
+                    <p>Opportunities going quiet? AI detects stalls, diagnoses the reason (missed follow-up, priority
+                        shift), and drafts tailored re-engagement messages to recover lost pipeline value.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: PHASES 7-8 POST-SALE -->
+    <section class="slide" id="s6">
+        <img src="abstract_glass.png" class="bg-image" style="opacity: 0.1; transform: scaleX(-1);" alt="Background">
+        <div class="bg-gradient-overlay"></div>
+        <div class="container">
+            <div class="reveal">
+                <span class="kicker">Expansion & Success</span>
+                <h2>Growing lifetime value automatically</h2>
+            </div>
+            <div class="grid-2" style="margin-top: 4rem;">
+                <div class="glass-card reveal delay-1">
+                    <div class="phase-number">07</div>
+                    <h3>Customer Handover</h3>
+                    <p>Zero context loss between Sales and Customer Success. Paioneers automatically compiles a complete
+                        Customer Briefing Document containing agreed outcomes and deployment priorities.</p>
+                </div>
+                <div class="glass-card reveal delay-2">
+                    <div class="phase-number">08</div>
+                    <h3>Expansion Intelligence</h3>
+                    <p>Identify expansion readiness in existing accounts. The system monitors growth signals,
+                        stakeholder changes, and industry events, alerting reps before the competitor arrives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 7: IMPACT -->
+    <section class="slide" id="s7">
+        <img src="paioneers_branding.jpg" class="bg-image" style="opacity: 0.2; object-fit: cover;" alt="Branding">
+        <div class="bg-gradient-overlay-left"></div>
+        <div class="container reveal">
+            <span class="badge">THE IMPACT</span>
+            <h2 style="font-size: clamp(2.5rem, 5vw, 4rem);">A Connected Revenue Engine</h2>
+            <p style="font-size: 1.5rem; max-width: 800px; margin-bottom: 4rem;">Paioneers builds the infrastructure
+                that enables modern revenue teams to operate intelligently, consistently, and without leaving value on
+                the table.</p>
+
+            <div class="grid-4">
+                <div style="border-left: 2px solid var(--brand-primary); padding-left: 1.5rem;">
+                    <h3
+                        style="color: white; font-family: var(--font-body); font-size: 1rem; text-transform:uppercase; letter-spacing:0.1em; opacity: 0.6;">
+                        ↑ Pipeline</h3>
+                    <p style="color: var(--brand-primary); font-size: 1.25rem; font-weight: 300; margin: 0.5rem 0;">More
+                        Qualified</p>
+                    <p style="font-size: 0.9rem;">AI-powered acquisition and signal-based prospecting across all
+                        accounts.</p>
+                </div>
+                <div style="border-left: 2px solid var(--brand-primary); padding-left: 1.5rem;">
+                    <h3
+                        style="color: white; font-family: var(--font-body); font-size: 1rem; text-transform:uppercase; letter-spacing:0.1em; opacity: 0.6;">
+                        ↓ Admin</h3>
+                    <p style="color: var(--brand-primary); font-size: 1.25rem; font-weight: 300; margin: 0.5rem 0;">Zero
+                        Manual Work</p>
+                    <p style="font-size: 0.9rem;">Automated CRM updates, briefings, proposals, and post-call follow-ups.
+                    </p>
+                </div>
+                <div style="border-left: 2px solid var(--brand-primary); padding-left: 1.5rem;">
+                    <h3
+                        style="color: white; font-family: var(--font-body); font-size: 1rem; text-transform:uppercase; letter-spacing:0.1em; opacity: 0.6;">
+                        ↑ LTV</h3>
+                    <p style="color: var(--brand-primary); font-size: 1.25rem; font-weight: 300; margin: 0.5rem 0;">
+                        Higher Våalue</p>
+                    <p style="font-size: 0.9rem;">Expansion intelligence that maximizes lifetime revenue proactively.
+                    </p>
+                </div>
+                <div style="border-left: 2px solid var(--brand-primary); padding-left: 1.5rem;">
+                    <h3
+                        style="color: white; font-family: var(--font-body); font-size: 1rem; text-transform:uppercase; letter-spacing:0.1em; opacity: 0.6;">
+                        ↑ Win Rate</h3>
+                    <p style="color: var(--brand-primary); font-size: 1.25rem; font-weight: 300; margin: 0.5rem 0;">
+                        Better Discovery</p>
+                    <p style="font-size: 0.9rem;">Every rep is prepared, every call is structured, every insight is
+                        captured.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for Scroll Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup Reveal Animations
+            const reveals = document.querySelectorAll('.reveal');
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.2 };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    } else {
+                        // Optional: reset animation when scrolled out of view
+                        // entry.target.classList.remove('active');
+                    }
+                });
+            }, observerOptions);
+
+            reveals.forEach(el => revealObserver.observe(el));
+
+            // Setup Slide Indicators
+            const slides = document.querySelectorAll('.slide');
+            const indicatorContainer = document.getElementById('indicator');
+
+            slides.forEach((slide, i) => {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.addEventListener('click', () => {
+                    slide.scrollIntoView({ behavior: 'smooth' });
+                });
+                indicatorContainer.appendChild(dot);
+            });
+
+            const dots = document.querySelectorAll('.dot');
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const index = Array.from(slides).indexOf(entry.target);
+                        dots.forEach(d => d.classList.remove('active'));
+                        dots[index].classList.add('active');
+                    }
+                });
+            }, { threshold: 0.6 });
+
+            slides.forEach(slide => navObserver.observe(slide));
+        });
+    </script>
+</body>
+
+</html>

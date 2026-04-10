@@ -1,0 +1,69 @@
+{
+  "brand": {
+    "name": "Paioneers B.V. — Research Division",
+    "document_type": "Research Paper",
+    "website": "https://www.paioneers.nl"
+  },
+  "colors": {
+    "page_background": "#FAFAF8",
+    "ink_primary": "#1A1A18",
+    "ink_secondary": "#3D3D3A",
+    "ink_muted": "#6B6B66",
+    "rule_light": "#D6D6D0",
+    "rule_heavy": "#A0A09A",
+    "accent_teal": "#0F7A99",
+    "accent_orange": "#C96442",
+    "cover_background": "#032C2D",
+    "cover_text": "#FAFFEF",
+    "callout_background": "#F0F4F2",
+    "callout_border": "#0F7A99",
+    "code_background": "#F4F4F2",
+    "table_header_background": "#032C2D",
+    "table_header_text": "#FAFFEF",
+    "table_row_alt": "#F0F4F2"
+  },
+  "typography": {
+    "font_family_serif": "\"EB Garamond\", \"Georgia\", \"Times New Roman\", serif",
+    "font_family_sans": "\"IBM Plex Sans\", Arial, sans-serif",
+    "font_family_mono": "\"IBM Plex Mono\", Menlo, monospace",
+    "font_size_base": "11pt",
+    "font_size_h1": "18pt",
+    "font_size_h2": "14pt",
+    "font_size_h3": "12pt",
+    "font_size_caption": "9pt",
+    "font_size_footnote": "9pt",
+    "font_size_label": "8pt",
+    "line_height_body": "1.75",
+    "line_height_heading": "1.2",
+    "letter_spacing_label": "0.12em"
+  },
+  "layout": {
+    "page_width": "210mm",
+    "page_height": "297mm",
+    "margin_top": "25mm",
+    "margin_bottom": "25mm",
+    "margin_inner": "30mm",
+    "margin_outer": "22mm",
+    "column_count": 1,
+    "max_content_width": "720px",
+    "paragraph_indent": "1.5em",
+    "section_spacing": "2.5em",
+    "figure_spacing": "1.5em"
+  },
+  "spacing": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "28px",
+    "xl": "44px",
+    "xxl": "64px"
+  },
+  "shape": {
+    "radius_sm": "3px",
+    "radius_md": "5px"
+  },
+  "elevation": {
+    "figure": "0 2px 8px rgba(0,0,0,0.10)",
+    "cover": "none"
+  }
+}

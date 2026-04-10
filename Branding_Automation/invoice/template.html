@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{DECK_TITLE}}</title>
+  <style>{{BRAND_CSS}}</style>
+</head>
+<body>
+  <main class="deck deck--invoice">
+    <section class="slide cover">
+      <div class="brand-mark">
+        <span class="logo-inline"><img src="../brand/logo_white.png" alt="Paioneers Logo" style="height: 44px; width: auto;" /></span>
+      </div>
+      <p class="kicker">Invoice Template</p>
+      <h1>{{DECK_TITLE}}</h1>
+      <p>{{DECK_SUBTITLE}}</p>
+      <div class="footer-meta">
+        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+        <span>{{COMPANY_NAME}}</span>
+        <span>{{GENERATED_AT}}</span>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Invoice Details</p>
+      <h2>Billing Overview</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Invoice Meta</h3>
+          <ul>
+            <li><strong>Invoice #:</strong> {{INVOICE_NUMBER}}</li>
+            <li><strong>Invoice Date:</strong> {{INVOICE_DATE}}</li>
+            <li><strong>Due Date:</strong> {{DUE_DATE}}</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Parties</h3>
+          <p><strong>Bill To:</strong> {{BILL_TO}}</p>
+          <p style="margin-top: var(--space-sm);"><strong>Ship To:</strong> {{SHIP_TO}}</p>
+          <p class="muted" style="margin-top: var(--space-sm);"><strong>Bill From:</strong> {{BILL_FROM}}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Line Items</p>
+      <h2>Invoice Breakdown</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>{{LINE_ITEMS_ROWS}}</tbody>
+        </table>
+      </div>
+      <div class="grid-2" style="margin-top: var(--space-lg);">
+        <div class="card">
+          <h3>Payment Terms</h3>
+          <p>{{PAYMENT_TERMS}}</p>
+        </div>
+        <div class="card">
+          <h3>Totals</h3>
+          <ul>
+            <li><strong>Subtotal:</strong> {{SUBTOTAL}}</li>
+            <li><strong>Discount:</strong> {{DISCOUNT}}</li>
+            <li><strong>Subtotal Less Discount:</strong> {{SUBTOTAL_LESS_DISCOUNT}}</li>
+            <li><strong>Tax Rate:</strong> {{TAX_RATE}}</li>
+            <li><strong>Total Tax:</strong> {{TOTAL_TAX}}</li>
+            <li><strong>Shipping/Handling:</strong> {{SHIPPING_HANDLING}}</li>
+            <li><strong>Balance Due:</strong> {{BALANCE_DUE}}</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Notes</p>
+      <h2>Additional Information</h2>
+      <div class="card">
+        <p>{{REMARKS}}</p>
+      </div>
+      <div class="footer-meta">
+        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+        <span>www.paioneers.nl</span>
+        <span>Prepared by Paioneers B.V.</span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{DECK_TITLE}}</title>
+  <style>{{BRAND_CSS}}</style>
+</head>
+<body>
+  <main class="deck deck--meeting-followup">
+    <section class="slide cover">
+      <div class="brand-mark">
+        <span class="logo-inline"><img src="../brand/logo_white.png" alt="Paioneers Logo" style="height: 44px; width: auto;" /></span>
+      </div>
+      <p class="kicker">Meeting Follow-Up</p>
+      <h1>{{DECK_TITLE}}</h1>
+      <p>{{DECK_SUBTITLE}}</p>
+      <div class="footer-meta">
+        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+        <span>{{COMPANY_NAME}}</span>
+        <span>{{GENERATED_AT}}</span>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Executive Summary</p>
+      <h2>What We Aligned On</h2>
+      <div class="card">
+        <p>{{EXECUTIVE_SUMMARY}}</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Discussion Highlights</p>
+      <h2>Key Discussion Points</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Main Topics</h3>
+          <ul>{{KEY_DISCUSSION_POINTS}}</ul>
+        </div>
+        <div class="card">
+          <h3>Risks &amp; Watchouts</h3>
+          <ul>{{RISKS_AND_WATCHOUTS}}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Execution</p>
+      <h2>Action Items</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Owner</th>
+              <th>Action</th>
+              <th>Due Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>{{ACTION_ITEMS_ROWS}}</tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Momentum</p>
+      <h2>Next Steps</h2>
+      <div class="card">
+        <ol>{{NEXT_STEPS}}</ol>
+      </div>
+      <div class="footer-meta">
+        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+        <span>www.paioneers.nl</span>
+        <span>Prepared by Paioneers B.V.</span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

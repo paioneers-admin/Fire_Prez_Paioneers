@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pricing Deck Content",
+  "type": "object",
+  "required": [
+    "deck_subtitle",
+    "value_proposition",
+    "tier_cards",
+    "cost_breakdown",
+    "roi_highlights",
+    "commercial_terms"
+  ],
+  "properties": {
+    "deck_subtitle": { "type": "string" },
+    "value_proposition": { "type": "string" },
+    "tier_cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "price", "ideal_for", "features", "featured"],
+        "properties": {
+          "name": { "type": "string" },
+          "price": { "type": "string" },
+          "ideal_for": { "type": "string" },
+          "features": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "featured": { "type": "boolean" }
+        }
+      }
+    },
+    "cost_breakdown": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item", "cost", "notes"],
+        "properties": {
+          "item": { "type": "string" },
+          "cost": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "roi_highlights": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "commercial_terms": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

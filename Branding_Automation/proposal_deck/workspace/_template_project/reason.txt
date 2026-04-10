@@ -1,0 +1,23 @@
+# Proposal Reason & Context
+[Replace this text with the specific context for this proposal]
+
+## Who is the Prospect?
+- Company: 
+- Contact: 
+- Industry: 
+
+## What is the Problem?
+- Pain points discussed: 
+- Current poor setup: 
+
+## What is our Proposed Solution?
+- Our approach: 
+- Key features/benefits: 
+
+## Investment / Timeline
+- Scope: 
+- Price/Budget: 
+- Timeline: 
+
+## Additional Notes
+- [Any specific call-outs or tone requests...]

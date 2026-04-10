@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{DECK_TITLE}}</title>
+  <style>{{BRAND_CSS}}</style>
+</head>
+<body>
+  <main class="deck deck--proposal">
+    <section class="slide cover">
+      <div class="brand-mark">
+        <span class="logo-inline"><img src="../brand/logo_white.png" alt="Paioneers Logo" style="height: 44px; width: auto;" /></span>
+      </div>
+      <p class="kicker">Proposal Deck</p>
+      <h1>{{DECK_TITLE}}</h1>
+      <p>{{DECK_SUBTITLE}}</p>
+      <div class="footer-meta">
+        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+        <span>{{COMPANY_NAME}}</span>
+        <span>{{GENERATED_AT}}</span>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Problem</p>
+      <h2>Current Situation</h2>
+      <div class="card">
+        <p>{{PROBLEM_STATEMENT}}</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Solution</p>
+      <h2>Proposed Approach</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Solution Overview</h3>
+          <p>{{PROPOSED_SOLUTION}}</p>
+        </div>
+        <div class="card">
+          <h3>Scope</h3>
+          <ul>{{SCOPE_ITEMS}}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Delivery Plan</p>
+      <h2>Timeline &amp; Milestones</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>Window</th>
+              <th>Outcomes</th>
+            </tr>
+          </thead>
+          <tbody>{{TIMELINE_PHASE_ROWS}}</tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Commercials &amp; Decision</p>
+      <h2>Investment &amp; Next Decision</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Investment Summary</h3>
+          <p>{{INVESTMENT_SUMMARY}}</p>
+        </div>
+        <div class="card">
+          <h3>Decision &amp; Call To Action</h3>
+          <p>{{DECISION_AND_CTA}}</p>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+        <span>www.paioneers.nl</span>
+        <span>Prepared by Paioneers B.V.</span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

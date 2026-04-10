@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Call Analysis — {{meeting_meta.title}}</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@200;300;400;500;600&display=swap');
+
+:root {
+  /* Paioneers Colors */
+  --brand-cream: #FAFFEF;
+  --brand-dark-teal: #032C2D;
+  --brand-teal: #0F7A99;
+  --brand-orange: #F37C38;
+  --brand-periwinkle: #A9B8FF;
+  --brand-light-blue: #5B8DEF;
+  --brand-muted-gray: #8fa097;
+
+  /* Typographic Foundations */
+  --font-sans: "IBM Plex Sans", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", Menlo, monospace;
+
+  /* Spacing */
+  --space-xs: 6px;
+  --space-sm: 10px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 36px;
+  --space-2xl: 56px;
+
+  /* Shapes / Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  /* Glassmorphism & Shadow */
+  --glass-bg-light: rgba(250, 255, 239, 0.92);
+  --glass-bg-dark: rgba(3, 44, 45, 0.95);
+  --glass-blur: blur(24px);
+  --glass-border-light: 1px solid rgba(3, 44, 45, 0.12);
+  --glass-border-dark: 1px solid rgba(250, 255, 239, 0.08);
+  
+  --shadow-card: 0 16px 34px rgba(3, 44, 45, 0.18);
+  --shadow-soft: 0 8px 20px rgba(3, 44, 45, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: var(--space-xl);
+  font-family: var(--font-sans);
+  color: var(--brand-dark-teal);
+  background: var(--brand-cream);
+}
+
+/* Presentation Container */
+.deck {
+  max-width: 1560px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--space-lg);
+}
+
+/* Standard Slide Card with Glassmorphism */
+.slide {
+  border-radius: var(--radius-lg);
+  background: var(--glass-bg-light);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-card);
+  min-height: 640px;
+  padding: var(--space-2xl);
+  position: relative;
+  overflow: hidden;
+  border: var(--glass-border-light);
+  border-bottom: 1px solid rgba(3, 44, 45, 0.06);
+}
+
+/* Cover / Title Slide with Sunrise Gradient */
+.cover {
+  display: grid;
+  align-content: center;
+  gap: var(--space-lg);
+  background: linear-gradient(135deg, #d3866c 0%, #cf8b7d 14%, #c89495 28%, #c29baa 42%, #bba2c0 56%, #b5aad7 70%, #aeb2ec 100%);
+  color: var(--brand-cream);
+}
+
+.cover h1 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 200; /* Extremely thin */
+  font-size: clamp(40px, 5vw, 78px);
+  letter-spacing: -0.03em;
+}
+
+.cover p {
+  margin: 0;
+  max-width: 920px;
+  color: var(--brand-cream);
+  font-weight: 300;
+  font-size: clamp(16px, 2.2vw, 26px);
+}
+
+/* Kicker, Metadata, Callouts (IBM Plex Mono) */
+.brand-mark, .kicker, .footer-meta, thead th {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em; /* Wide tracking */
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.logo-inline {
+  width: 120px;
+  max-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo-inline svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.kicker {
+  margin: 0;
+  font-size: 12px;
+  color: var(--brand-teal);
+  font-weight: 500;
+}
+
+/* Typography Headings */
+h2 {
+  margin: var(--space-sm) 0 var(--space-md);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(26px, 3.4vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  margin: 0 0 var(--space-sm);
+  font-weight: 400;
+  font-size: clamp(20px, 2vw, 28px);
+}
+
+p {
+  margin: 0;
+  line-height: 1.45;
+  font-weight: 300;
+  font-size: clamp(15px, 1.6vw, 22px);
+  color: var(--brand-dark-teal);
+}
+
+.muted {
+  color: var(--brand-muted-gray);
+}
+
+/* Grids & Cards */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.card {
+  border-radius: var(--radius-md);
+  border: var(--glass-border-light);
+  padding: var(--space-lg);
+  background: rgba(250, 255, 239, 0.4);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: var(--glass-blur);
+}
+
+/* Accents for bullet points instead of standard bullets */
+ul,
+ol {
+  margin: 0;
+  padding-left: 0;
+  display: grid;
+  gap: var(--space-sm);
+  list-style-type: none;
+}
+
+li {
+  line-height: 1.4;
+  font-weight: 300;
+  font-size: clamp(14px, 1.45vw, 20px);
+  display: flex;
+  align-items: center;
+}
+
+li::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--brand-orange);
+  margin-right: var(--space-md);
+  flex-shrink: 0;
+}
+
+/* Tables */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: var(--glass-border-light);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(13px, 1.35vw, 18px);
+}
+
+thead th {
+  text-align: left;
+  background: var(--glass-bg-dark);
+  color: var(--brand-cream);
+  font-weight: 500;
+  padding: 12px 14px;
+  font-size: 11px;
+}
+
+tbody td {
+  padding: 12px 14px;
+  border-top: var(--glass-border-light);
+  vertical-align: top;
+  font-weight: 300;
+}
+
+/* Tiers / Pricing Cards */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.tier {
+  border-radius: var(--radius-md);
+  background: var(--glass-bg-light);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border-light);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.tier--featured {
+  /* Glowing gradient border approach for featured items */
+  border: 1px solid transparent;
+  background: linear-gradient(var(--glass-bg-light), var(--glass-bg-light)) padding-box,
+              linear-gradient(90deg, var(--brand-orange), var(--brand-periwinkle), var(--brand-teal)) border-box;
+}
+
+.price {
+  margin-top: var(--space-sm);
+  color: var(--brand-dark-teal);
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 200;
+}
+
+.footer-meta {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: var(--space-2xl);
+  right: var(--space-2xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--brand-muted-gray);
+  font-size: 11px;
+}
+
+/* CTA Buttons */
+.btn-cta {
+  display: inline-flex;
+  padding: var(--space-sm) var(--space-xl);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  color: var(--brand-dark-teal);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: linear-gradient(var(--glass-bg-light), var(--glass-bg-light)) padding-box,
+              linear-gradient(90deg, #F37C38, #A9B8FF, #0F7A99) border-box;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-cta:hover {
+  background: linear-gradient(90deg, #F37C38, #A9B8FF, #0F7A99);
+  color: var(--brand-cream);
+  letter-spacing: 0.2em;
+}
+
+@media (max-width: 1100px) {
+  body {
+    padding: var(--space-md);
+  }
+
+  .slide {
+    min-height: 0;
+    padding: var(--space-xl);
+  }
+
+  .grid-2,
+  .tier-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-meta {
+    position: static;
+    margin-top: var(--space-lg);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+}
+
+
+/* Custom Call Analysis Styles */
+.sentiment-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(250, 255, 239, 0.2);
+}
+.sentiment-positive  { background: rgba(15, 122, 153, 0.2);  color: var(--brand-teal); border-color: rgba(15, 122, 153, 0.4); }
+.sentiment-negative  { background: rgba(243, 124, 56, 0.2);  color: var(--brand-orange); border-color: rgba(243, 124, 56, 0.4); }
+.sentiment-mixed     { background: rgba(169, 184, 255, 0.2); color: var(--brand-periwinkle); border-color: rgba(169, 184, 255, 0.4); }
+.sentiment-neutral   { background: rgba(143, 160, 151, 0.2); color: var(--brand-muted-gray); border-color: rgba(143, 160, 151, 0.4); }
+
+.meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  margin-top: var(--space-sm);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250, 255, 239, 0.6);
+}
+
+.meta-value {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(14px, 1.5vw, 18px);
+  color: var(--brand-cream);
+}
+
+.signal-card {
+  border-radius: var(--radius-md);
+  border: var(--glass-border-light);
+  padding: var(--space-lg);
+  background: var(--glass-bg-light);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-soft);
+}
+
+.signal-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-teal);
+  margin-bottom: var(--space-xs);
+}
+
+.signal-value {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(14px, 1.4vw, 18px);
+  line-height: 1.45;
+  color: var(--brand-dark-teal);
+}
+
+.signal-null {
+  color: var(--brand-muted-gray);
+  font-style: italic;
+  font-size: clamp(13px, 1.3vw, 16px);
+}
+
+.quote-block {
+  border-left: 2px solid var(--brand-orange);
+  padding: var(--space-md) var(--space-lg);
+  margin: 0;
+  background: rgba(243, 124, 56, 0.05);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 1.6vw, 22px);
+  font-weight: 200;
+  line-height: 1.5;
+  color: var(--brand-dark-teal);
+  font-style: italic;
+}
+
+.card--highlight {
+  border: 1px solid transparent;
+  background: linear-gradient(var(--glass-bg-light), var(--glass-bg-light)) padding-box,
+              linear-gradient(90deg, var(--brand-teal), var(--brand-periwinkle), var(--brand-orange)) border-box;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+</style>
+</head>
+<body>
+  <main class="deck deck--call-analysis">
+
+    <!-- SLIDE 1: COVER -->
+    <section class="slide cover">
+      <div class="brand-mark">
+        <span class="logo-inline"><img src="../brand/logo_white.png" alt="Paioneers Logo" style="height: 44px; width: auto;" /></span>
+      </div>
+      <p class="kicker">Call Analysis</p>
+      <h1>{{meeting_meta.title}}</h1>
+      <div class="meta-strip">
+        <div class="meta-item">
+          <span class="meta-label">Date</span>
+          <span class="meta-value">{{meeting_meta.date}}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Duration</span>
+          <span class="meta-value">{{meeting_meta.duration_minutes}} min</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Organizer</span>
+          <span class="meta-value">{{meeting_meta.organizer}}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Sentiment</span>
+          <span class="meta-value">
+            <span class="sentiment-badge sentiment-{{overall_sentiment}}">{{overall_sentiment}}</span>
+          </span>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+        <span>{{prospect.company_name}}</span>
+        <span>Prepared by Paioneers B.V.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: EXECUTIVE SUMMARY -->
+    <section class="slide">
+      <p class="kicker">Summary</p>
+      <h2>What Happened on This Call</h2>
+      <div class="card card--highlight">
+        <p>{{executive_summary}}</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: PROSPECT PROFILE + SIGNALS -->
+    <section class="slide">
+      <p class="kicker">Prospect Intelligence</p>
+      <h2>Who We Spoke To</h2>
+      <div class="grid-2" style="margin-bottom: var(--space-lg);">
+        <div class="card">
+          <h3>Contact</h3>
+          <ul>
+            <li><strong>Name:</strong> {{prospect.contact_name}}</li>
+            <li><strong>Role:</strong> {{prospect.role}}</li>
+            <li><strong>Company:</strong> {{prospect.company_name}}</li>
+            <li><strong>Industry:</strong> {{prospect.industry}}</li>
+            <li><strong>Size:</strong> {{prospect.company_size}}</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Attendees</h3>
+          <ul>
+            {{#each meeting_meta.attendees}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="signal-card">
+          <div class="signal-label">Current Solution</div>
+          <div class="signal-value">{{#if current_solution}}{{current_solution}}{{else}}<span class="signal-null">Not mentioned</span>{{/if}}</div>
+        </div>
+        <div class="signal-card">
+          <div class="signal-label">Budget Signal</div>
+          <div class="signal-value">{{#if budget_signals}}{{budget_signals}}{{else}}<span class="signal-null">Not mentioned</span>{{/if}}</div>
+        </div>
+        <div class="signal-card">
+          <div class="signal-label">Timeline Signal</div>
+          <div class="signal-value">{{#if timeline_signals}}{{timeline_signals}}{{else}}<span class="signal-null">Not mentioned</span>{{/if}}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: PAIN POINTS + OBJECTIONS -->
+    <section class="slide">
+      <p class="kicker">Discovery Intelligence</p>
+      <h2>Pain Points & Objections</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Pain Points</h3>
+          <ul>
+            {{#each pain_points}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Objections</h3>
+          {{#if objections.length}}
+          <ul>
+            {{#each objections}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+          {{else}}
+          <p class="muted">No objections recorded.</p>
+          {{/if}}
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: KEY QUOTES -->
+    {{#if key_quotes.length}}
+    <section class="slide">
+      <p class="kicker">Voice of Prospect</p>
+      <h2>Key Quotes</h2>
+      <div style="display: grid; gap: var(--space-md);">
+        {{#each key_quotes}}
+        <blockquote class="quote-block">"{{this}}"</blockquote>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
+
+    <!-- SLIDE 6: ACTION ITEMS -->
+    <section class="slide">
+      <p class="kicker">Execution</p>
+      <h2>Action Items</h2>
+      {{#if action_items.length}}
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Owner</th>
+              <th>Action</th>
+              <th>Due Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each action_items}}
+            <tr>
+              <td>{{owner}}</td>
+              <td>{{action}}</td>
+              <td>{{#if due_date}}{{due_date}}{{else}}<span class="muted">TBD</span>{{/if}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      {{else}}
+      <div class="card">
+        <p class="muted">No explicit action items recorded.</p>
+      </div>
+      {{/if}}
+    </section>
+
+    <!-- SLIDE 7: STRATEGIC ASSESSMENT + RECOMMENDED APPROACH -->
+    <section class="slide">
+      <p class="kicker">Strategic Read</p>
+      <h2>Assessment & Next Move</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Strategic Assessment</h3>
+          <p>{{strategic_assessment}}</p>
+        </div>
+        <div class="card card--highlight">
+          <h3>Recommended Approach</h3>
+          <p>{{recommended_approach}}</p>
+          {{#if next_steps}}
+          <p style="margin-top: var(--space-md); font-weight: 700; color: var(--brand-primary);">Agreed Next Step: {{next_steps}}</p>
+          {{/if}}
+        </div>
+      </div>
+      <div class="footer-meta">
+        <img src="../brand/logoblack.png" style="height: 16px; opacity: 0.5;" alt="Paioneers Logo" />
+        <span>www.paioneers.nl</span>
+        <span>Prepared by Paioneers B.V. · Confidential</span>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
